@@ -29,7 +29,7 @@ public class RestClientApplication implements CommandLineRunner{
 		RestTemplate restTemplate = new RestTemplate();
 		HttpHeaders headers = new HttpHeaders();
 		
-		String plainCreds = "rxdsl:Cntl#2017";
+		String plainCreds = "rxdsl1:Cntl#20171";
 		byte[] plainCredsBytes = plainCreds.getBytes();
 		byte[] base64CredsBytes = Base64.encodeBase64(plainCredsBytes);
 		String base64Creds = new String(base64CredsBytes);
