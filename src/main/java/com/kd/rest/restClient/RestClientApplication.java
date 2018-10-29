@@ -22,21 +22,21 @@ public class RestClientApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-//		getServe();
+		getServe();
 	}
 	
 	public void getServe() {
 		RestTemplate restTemplate = new RestTemplate();
 		HttpHeaders headers = new HttpHeaders();
 		
-		String plainCreds = "rxdsl:Cntl#2017";
+		String plainCreds = "Username:Password";
 		byte[] plainCredsBytes = plainCreds.getBytes();
 		byte[] base64CredsBytes = Base64.encodeBase64(plainCredsBytes);
 		String base64Creds = new String(base64CredsBytes);
 		
 		headers.add("Authorization", "Basic " + base64Creds);
 		headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
-		String resourceUrl = "https://cxg7d.test.qintra.com/test2/E/N/401RXMicro/services/rxProductInfo?etn=1000000191";
+		String resourceUrl = "http://applicationContextPath";
 		HttpEntity<String> entity = new HttpEntity<>(headers);
 		ResponseEntity<String> response = restTemplate.exchange(resourceUrl, HttpMethod.GET, entity, String.class);
 		
