@@ -22,14 +22,14 @@ public class RestClientApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		getServe();
+//		getServe();
 	}
 	
 	public void getServe() {
 		RestTemplate restTemplate = new RestTemplate();
 		HttpHeaders headers = new HttpHeaders();
 		
-		String plainCreds = "yourUsername:YourPassword";
+		String plainCreds = "rxdsl:Cntl#2017";
 		byte[] plainCredsBytes = plainCreds.getBytes();
 		byte[] base64CredsBytes = Base64.encodeBase64(plainCredsBytes);
 		String base64Creds = new String(base64CredsBytes);
