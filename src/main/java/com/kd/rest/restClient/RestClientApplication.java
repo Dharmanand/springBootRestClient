@@ -29,7 +29,7 @@ public class RestClientApplication implements CommandLineRunner{
 		RestTemplate restTemplate = new RestTemplate();
 		HttpHeaders headers = new HttpHeaders();
 		
-		String plainCreds = "";
+		String plainCreds = "yourUsername:YourPassword";
 		byte[] plainCredsBytes = plainCreds.getBytes();
 		byte[] base64CredsBytes = Base64.encodeBase64(plainCredsBytes);
 		String base64Creds = new String(base64CredsBytes);
