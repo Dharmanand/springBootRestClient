@@ -34,14 +34,12 @@ public class HelloController {
 	@GetMapping(value="/students", produces=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Student>> getStudent(){
 		return new ResponseEntity<List<Student>>(list, HttpStatus.OK);
-		
 	}
 	
 	@PostMapping(value="/students", consumes=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Student>> createStudent(@RequestBody Student student){
 		list.add(student);
 		return new ResponseEntity<List<Student>>(list, HttpStatus.OK);
-		
 	}
 
 }
