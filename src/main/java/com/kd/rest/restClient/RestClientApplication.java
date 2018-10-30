@@ -3,6 +3,7 @@ package com.kd.rest.restClient;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -38,8 +39,12 @@ public class RestClientApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		// getRxProductInfo();
 		// getServe();
-		// getStudents();
+		 getStudents();
 		createStudent();
+		updateStudent();
+		getStudents();
+		deleteStudent();
+		getStudents();
 	}
 
 	public void getServe() {
@@ -90,7 +95,7 @@ public class RestClientApplication implements CommandLineRunner {
 	// REST client using RestTemplate to access HTTP GET api requests.
 	
 	public void getStudents() throws JsonParseException, JsonMappingException, IOException {
-		final String uri = "http://localhost:8080/restClient/api/students";
+		final String uri = "http://localhost:8181/restClient/api/students";
 		RestTemplate restTemplate = new RestTemplate();
 		// By default 'restTemplate.getForObject(uri, List.class)' return object of
 		// java.util.LinkedHashMap
@@ -113,7 +118,7 @@ public class RestClientApplication implements CommandLineRunner {
 	// REST client using RestTemplate to access HTTP POST api requests.
 
 	public void createStudent() {
-		final String uri = "http://localhost:8080/restClient/api/students";
+		final String uri = "http://localhost:8181/restClient/api/students";
 
 		Student student = new Student(1003, "Adam");
 		RestTemplate restTemplate = new RestTemplate();
@@ -131,28 +136,28 @@ public class RestClientApplication implements CommandLineRunner {
 	}
 	
 	
-	/*public void updateStudent() {
+	public void updateStudent() {
 		
-		final String uri = "http://localhost:8080/restClient/api/students/{id}";
+		final String uri = "http://localhost:8181/restClient/api/students/{id}";
 	     
-	    Map<String, String> params = new HashMap<String, String>();
-	    params.put("id", "2");
+	    Map<String, Integer> params = new HashMap<>();
+	    params.put("id", 1001);
 	     
-	    EmployeeVO updatedEmployee = new EmployeeVO(2, "New Name", "Gilly", "test@email.com");
+	    Student updatedEmployee = new Student(1001, "Kumar1001");
 	     
 	    RestTemplate restTemplate = new RestTemplate();
-	    restTemplate.put ( uri, updatedEmployee, params);
+	    restTemplate.put(uri, updatedEmployee, params);
 		
-	}*/
+	}
 
-	/*public void deleteStudent() {
-		final String uri = "http://localhost:8080/restClient/api/students/{id}";
+	public void deleteStudent() {
+		final String uri = "http://localhost:8181/restClient/api/students/{id}";
 	     
-	    Map<String, String> params = new HashMap<String, String>();
-	    params.put("id", "2");
+	    Map<String, Integer> params = new HashMap<>();
+	    params.put("id", 1002);
 	     
 	    RestTemplate restTemplate = new RestTemplate();
-	    restTemplate.delete ( uri,  params );
-	}*/
+	    restTemplate.delete(uri, params);
+	}
 	
 }
