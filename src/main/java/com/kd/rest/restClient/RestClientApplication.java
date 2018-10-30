@@ -60,6 +60,8 @@ public class RestClientApplication implements CommandLineRunner {
 		System.out.println(response);
 	}
 
+	// REST client using RestTemplate to access HTTP GET api requests for complex JSON responses.
+	
 	public void getRxProductInfo() throws JsonParseException, JsonMappingException, IOException {
 		RestTemplate restTemplate = new RestTemplate();
 		HttpHeaders headers = new HttpHeaders();
@@ -85,6 +87,8 @@ public class RestClientApplication implements CommandLineRunner {
 
 	}
 
+	// REST client using RestTemplate to access HTTP GET api requests.
+	
 	public void getStudents() throws JsonParseException, JsonMappingException, IOException {
 		final String uri = "http://localhost:8080/restClient/api/students";
 		RestTemplate restTemplate = new RestTemplate();
