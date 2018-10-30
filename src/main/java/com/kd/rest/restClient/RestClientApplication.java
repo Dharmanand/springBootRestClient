@@ -39,7 +39,7 @@ public class RestClientApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		// getRxProductInfo();
 		// getServe();
-		 getStudents();
+		getStudents();
 		createStudent();
 		updateStudent();
 		getStudents();
@@ -65,8 +65,9 @@ public class RestClientApplication implements CommandLineRunner {
 		System.out.println(response);
 	}
 
-	// REST client using RestTemplate to access HTTP GET api requests for complex JSON responses.
-	
+	// REST client using RestTemplate to access HTTP GET api requests for complex
+	// JSON responses.
+
 	public void getRxProductInfo() throws JsonParseException, JsonMappingException, IOException {
 		RestTemplate restTemplate = new RestTemplate();
 		HttpHeaders headers = new HttpHeaders();
@@ -93,7 +94,7 @@ public class RestClientApplication implements CommandLineRunner {
 	}
 
 	// REST client using RestTemplate to access HTTP GET api requests.
-	
+
 	public void getStudents() throws JsonParseException, JsonMappingException, IOException {
 		final String uri = "http://localhost:8181/restClient/api/students";
 		RestTemplate restTemplate = new RestTemplate();
@@ -134,30 +135,33 @@ public class RestClientApplication implements CommandLineRunner {
 		}
 
 	}
-	
+
+	// REST client using RestTemplate to access HTTP PUT api requests.
 	
 	public void updateStudent() {
-		
+
 		final String uri = "http://localhost:8181/restClient/api/students/{id}";
-	     
-	    Map<String, Integer> params = new HashMap<>();
-	    params.put("id", 1001);
-	     
-	    Student updatedEmployee = new Student(1001, "Kumar1001");
-	     
-	    RestTemplate restTemplate = new RestTemplate();
-	    restTemplate.put(uri, updatedEmployee, params);
-		
+
+		Map<String, Integer> params = new HashMap<>();
+		params.put("id", 1001);
+
+		Student updatedEmployee = new Student(1001, "Kumar1001");
+
+		RestTemplate restTemplate = new RestTemplate();
+		restTemplate.put(uri, updatedEmployee, params);
+
 	}
 
+	// REST client using RestTemplate to access HTTP DELETE api requests.
+	
 	public void deleteStudent() {
 		final String uri = "http://localhost:8181/restClient/api/students/{id}";
-	     
-	    Map<String, Integer> params = new HashMap<>();
-	    params.put("id", 1002);
-	     
-	    RestTemplate restTemplate = new RestTemplate();
-	    restTemplate.delete(uri, params);
+
+		Map<String, Integer> params = new HashMap<>();
+		params.put("id", 1002);
+
+		RestTemplate restTemplate = new RestTemplate();
+		restTemplate.delete(uri, params);
 	}
-	
+
 }
