@@ -5,6 +5,8 @@ public class Student {
 	private int id;
 	private String name;
 	
+	public Student() {
+	}
 	public Student(int id, String name) {
 		super();
 		this.id = id;
@@ -23,7 +25,5 @@ public class Student {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	
 
 }
