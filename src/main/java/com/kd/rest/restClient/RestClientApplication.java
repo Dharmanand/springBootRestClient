@@ -98,9 +98,10 @@ public class RestClientApplication implements CommandLineRunner {
 	public void getStudents() throws JsonParseException, JsonMappingException, IOException {
 		final String uri = "http://localhost:8181/restClient/api/students";
 		RestTemplate restTemplate = new RestTemplate();
-		// By default 'restTemplate.getForObject(uri, List.class)' return object of
+		
+		// By default 'restTemplate.getForObject(uri, List.class)' return List of
 		// java.util.LinkedHashMap
-		// That why 'JsonNode' is used in place of any collection class.
+		// So that we can use either 'List of LinkedHashMap' or 'JsonNode' in place of collection List<Student>.
 		JsonNode result = (JsonNode) restTemplate.getForObject(uri, JsonNode.class);
 
 		ObjectMapper mapper = new ObjectMapper();
