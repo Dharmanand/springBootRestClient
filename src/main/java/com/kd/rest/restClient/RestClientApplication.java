@@ -3,6 +3,7 @@ package com.kd.rest.restClient;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -24,6 +25,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kd.rest.restClient.entity.Data;
 import com.kd.rest.restClient.entity.Employee;
+import com.kd.rest.restClient.entity.Student;
 
 @SpringBootApplication
 public class RestClientApplication implements CommandLineRunner{
@@ -34,9 +36,10 @@ public class RestClientApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		getRxProductInfo();
+//		getRxProductInfo();
 //		getServe();
 //		getStudents();
+		createStudent();
 	}
 	
 	public void getServe() {
@@ -83,9 +86,11 @@ public class RestClientApplication implements CommandLineRunner{
 	public void getStudents() throws JsonParseException, JsonMappingException, IOException {
 		final String uri = "http://localhost:8080/restClient/api/students";
 	    RestTemplate restTemplate = new RestTemplate();
-	    ObjectMapper mapper = new ObjectMapper();
+//	    By default 'restTemplate.getForObject(uri, List.class)' return object of java.util.LinkedHashMap
+//	    That why 'JsonNode' is used in place of any collection class. 
 	    JsonNode result = (JsonNode) restTemplate.getForObject(uri, JsonNode.class);
 	    
+	    ObjectMapper mapper = new ObjectMapper();
 	    List<Employee> stdList = mapper.readValue(
 	    	    mapper.treeAsTokens(result), 
 	    	    new TypeReference<List<Employee>>(){}
@@ -98,6 +103,27 @@ public class RestClientApplication implements CommandLineRunner{
 	    	System.out.println("-----------------------------");
 	    }
 	    
+	}
+	
+
+	//	REST client using RestTemplate to access HTTP POST api requests.
+	
+	public void createStudent() {
+		final String uri = "http://localhost:8080/restClient/api/students";
+		
+		Student student = new Student(1003, "Adam");
+		RestTemplate restTemplate = new RestTemplate();
+		List<LinkedHashMap<String, Object>> result = restTemplate.postForObject(uri, student, List.class);
+	 
+	    System.out.println(result);
+	    System.out.println(result.size());
+	    
+	    for(LinkedHashMap<String, Object> std : result) {
+	    	System.out.println(std);
+	    	System.out.println(std.get("id"));
+	    	System.out.println(std.get("name"));
+	    }
+		
 	}
 	
 }
