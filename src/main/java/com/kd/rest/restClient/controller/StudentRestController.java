@@ -16,7 +16,7 @@ import com.kd.rest.restClient.entity.Student;
 
 @RestController
 @RequestMapping("/api")
-public class StudentController {
+public class StudentRestController {
 	
 	static List<Student> list = new ArrayList<>();
 	static {
