@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,6 +40,17 @@ public class StudentRestController {
 	@PostMapping(value="/students", consumes=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Student>> createStudent(@RequestBody Student student){
 		list.add(student);
+		return new ResponseEntity<List<Student>>(list, HttpStatus.OK);
+	}
+	
+	@PostMapping(value="/students/{id}", consumes=MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<Student>> updateStudent(@PathVariable("id") int id, @RequestBody Student student){
+		for(Student std:list) {
+			if(std.getId() == id) {
+				std.setName(student.getName());
+				break;
+			}
+		}
 		return new ResponseEntity<List<Student>>(list, HttpStatus.OK);
 	}
 
